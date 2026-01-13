@@ -1,0 +1,5 @@
+{
+  "name": "Gregg Shorthand Master",
+  "description": "A mini webapp for learning, practicing, and translating Gregg Shorthand using AI-powered handwriting recognition on touchscreens.",
+  "requestFramePermissions": []
+}
