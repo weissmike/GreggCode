@@ -1,5 +1,5 @@
 
-import { Lesson } from './types';
+import { FolioGuide, Lesson } from './types';
 
 export const LESSONS: Lesson[] = [
   {
@@ -82,4 +82,119 @@ export const LESSONS: Lesson[] = [
       { word: 'Your', hint: 'A small upward hook (same as You)', category: 'brief-form' }
     ]
   }
+];
+
+export const FOLIO_GUIDES: FolioGuide[] = [
+  {
+    id: 'brief-forms-1',
+    title: 'Brief Forms - Part I',
+    description: 'A to Any (quick reference)',
+    type: 'built-in',
+    assetUrl: '/folio/brief-forms-1.jpg'
+  },
+  {
+    id: 'brief-forms-2',
+    title: 'Brief Forms - Part II',
+    description: 'Experience to Of (quick reference)',
+    type: 'built-in',
+    assetUrl: '/folio/brief-forms-2.jpg'
+  },
+  {
+    id: 'brief-forms-3',
+    title: 'Brief Forms - Part III',
+    description: 'Opinion to Short (quick reference)',
+    type: 'built-in',
+    assetUrl: '/folio/brief-forms-3.jpg'
+  },
+  {
+    id: 'brief-forms-4',
+    title: 'Brief Forms - Part IV',
+    description: 'Soon to When (quick reference)',
+    type: 'built-in',
+    assetUrl: '/folio/brief-forms-4.jpg'
+  },
+  {
+    id: 'brief-forms-5',
+    title: 'Brief Forms - Part V',
+    description: 'Where to Your (quick reference)',
+    type: 'built-in',
+    assetUrl: '/folio/brief-forms-5.jpg'
+  }
+];
+
+export const BRIEF_FORM_TEMPLATES: Array<{ word: string; tokens: string[] }> = [
+  { word: 'A', tokens: ['e'] },
+  { word: 'About', tokens: ['a'] },
+  { word: 'Acknowledge', tokens: ['l'] },
+  { word: 'Advantage', tokens: ['r', 's'] },
+  { word: 'After', tokens: ['e', 's'] },
+  { word: 'Am', tokens: ['m'] },
+  { word: 'Are', tokens: ['r'] },
+  { word: 'At', tokens: ['s'] },
+  { word: 'Be', tokens: ['l'] },
+  { word: 'Can', tokens: ['n'] },
+  { word: 'Experience', tokens: ['r', 'l'] },
+  { word: 'For', tokens: ['s'] },
+  { word: 'From', tokens: ['d'] },
+  { word: 'Good', tokens: ['m', 'r'] },
+  { word: 'Have', tokens: ['r', 's'] },
+  { word: 'I', tokens: ['e'] },
+  { word: 'In', tokens: ['n'] },
+  { word: 'It', tokens: ['t'] },
+  { word: 'Of', tokens: ['s'] },
+  { word: 'Opinion', tokens: ['r', 't'] },
+  { word: 'Opportunity', tokens: ['e', 'r'] },
+  { word: 'Order', tokens: ['l', 'n'] },
+  { word: 'Public', tokens: ['l', 's'] },
+  { word: 'Question', tokens: ['e', 'n'] },
+  { word: 'Satisfy', tokens: ['s', 'r'] },
+  { word: 'Send', tokens: ['n', 's'] },
+  { word: 'Soon', tokens: ['n', 's'] },
+  { word: 'Speak', tokens: ['s', 'e'] },
+  { word: 'State', tokens: ['n', 's'] },
+  { word: 'The', tokens: ['s'] },
+  { word: 'Think', tokens: ['r', 'e'] },
+  { word: 'When', tokens: ['b'] },
+  { word: 'Where', tokens: ['e', 's'] },
+  { word: 'Which', tokens: ['t'] },
+  { word: 'Will', tokens: ['m', 'r'] },
+  { word: 'Wish', tokens: ['r'] },
+  { word: 'With', tokens: ['l'] },
+  { word: 'Won', tokens: ['n'] },
+  { word: 'Work', tokens: ['n', 's'] },
+  { word: 'World', tokens: ['m', 'r'] },
+  { word: 'Worth', tokens: ['m'] },
+  { word: 'Would', tokens: ['l', 'n'] },
+  { word: 'Yesterday', tokens: ['d', 'e'] },
+  { word: 'You', tokens: ['r'] },
+  { word: 'Your', tokens: ['r'] }
+];
+
+export const GLYPH_OPTIONS: Array<{ key: string; label: string; hint: string; command: string }> = [
+  { key: 't', label: 'T', hint: 'Short Down', command: '\\t' },
+  { key: 'd', label: 'D', hint: 'Long Down', command: '\\d' },
+  { key: 'n', label: 'N', hint: 'Short Horiz', command: '\\n' },
+  { key: 'm', label: 'M', hint: 'Long Horiz', command: '\\m' },
+  { key: 'p', label: 'P', hint: 'Short L-Curve', command: '\\p' },
+  { key: 'b', label: 'B', hint: 'Long L-Curve', command: '\\b' },
+  { key: 'f', label: 'F', hint: 'Short R-Curve', command: '\\f' },
+  { key: 'v', label: 'V', hint: 'Long R-Curve', command: '\\v' },
+  { key: 'r', label: 'R', hint: 'Short Up-Curve', command: '\\r' },
+  { key: 'l', label: 'L', hint: 'Long Up-Curve', command: '\\l' },
+  { key: 'e', label: 'E', hint: 'Small Circle', command: '\\e' },
+  { key: 'a', label: 'A', hint: 'Large Circle', command: '\\a' },
+  { key: 's', label: 'S', hint: 'Tick', command: '\\s' },
+  { key: 'space', label: 'Space', hint: 'Gap', command: '\\space' },
+  { key: 'tn', label: 'T+N', hint: 'Down + short horiz', command: '\\t \\n' },
+  { key: 'tm', label: 'T+M', hint: 'Down + long horiz', command: '\\t \\m' },
+  { key: 'dn', label: 'D+N', hint: 'Long down + short horiz', command: '\\d \\n' },
+  { key: 'rm', label: 'R+M', hint: 'Up-curve + long horiz', command: '\\r \\m' },
+  { key: 'rn', label: 'R+N', hint: 'Up-curve + short horiz', command: '\\r \\n' },
+  { key: 'ln', label: 'L+N', hint: 'Long up-curve + short horiz', command: '\\l \\n' },
+  { key: 're', label: 'R+E', hint: 'Up-curve + small circle', command: '\\r \\e' },
+  { key: 'le', label: 'L+E', hint: 'Long up-curve + small circle', command: '\\l \\e' },
+  { key: 'ps', label: 'P+S', hint: 'Left curve + tick', command: '\\p \\s' },
+  { key: 'fs', label: 'F+S', hint: 'Right curve + tick', command: '\\f \\s' },
+  { key: 'ts', label: 'T+S', hint: 'Down + tick', command: '\\t \\s' },
+  { key: 'ns', label: 'N+S', hint: 'Short horiz + tick', command: '\\n \\s' }
 ];

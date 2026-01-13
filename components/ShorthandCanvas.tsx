@@ -4,19 +4,22 @@ import React, { useRef, useEffect, useState, useImperativeHandle, forwardRef } f
 interface ShorthandCanvasProps {
   className?: string;
   backgroundImage?: string | null;
+  onFreehandStart?: () => void;
 }
 
 export interface ShorthandCanvasHandle {
   clear: () => void;
   getDataUrl: () => string;
   drawPrimitive: (type: string) => void;
+  getStrokes: () => Array<{ x: number; y: number }>;
 }
 
-const ShorthandCanvas = forwardRef<ShorthandCanvasHandle, ShorthandCanvasProps>(({ className, backgroundImage }, ref) => {
+const ShorthandCanvas = forwardRef<ShorthandCanvasHandle, ShorthandCanvasProps>(({ className, backgroundImage, onFreehandStart }, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasContent, setHasContent] = useState(false);
   const [cursor, setCursor] = useState({ x: 50, y: 150 }); // Starting position for "typing"
+  const pointsRef = useRef<Array<{ x: number; y: number }>>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -44,6 +47,7 @@ const ShorthandCanvas = forwardRef<ShorthandCanvasHandle, ShorthandCanvasProps>(
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     setHasContent(false);
     setCursor({ x: 50, y: 150 });
+    pointsRef.current = [];
   };
 
   const getPointerPos = (e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
@@ -71,6 +75,7 @@ const ShorthandCanvas = forwardRef<ShorthandCanvasHandle, ShorthandCanvasProps>(
     if (!ctx) return;
 
     const { x, y } = getPointerPos(e);
+    onFreehandStart?.();
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineWidth = 3;
@@ -79,6 +84,7 @@ const ShorthandCanvas = forwardRef<ShorthandCanvasHandle, ShorthandCanvasProps>(
     setIsDrawing(true);
     setHasContent(true);
     setCursor({ x, y });
+    pointsRef.current.push({ x, y });
   };
 
   const draw = (e: React.MouseEvent | React.TouchEvent) => {
@@ -92,6 +98,7 @@ const ShorthandCanvas = forwardRef<ShorthandCanvasHandle, ShorthandCanvasProps>(
     ctx.lineTo(x, y);
     ctx.stroke();
     setCursor({ x, y });
+    pointsRef.current.push({ x, y });
   };
 
   const stopDrawing = () => {
@@ -181,7 +188,8 @@ const ShorthandCanvas = forwardRef<ShorthandCanvasHandle, ShorthandCanvasProps>(
   useImperativeHandle(ref, () => ({
     clear,
     getDataUrl: () => canvasRef.current?.toDataURL('image/png') || '',
-    drawPrimitive
+    drawPrimitive,
+    getStrokes: () => pointsRef.current
   }));
 
   return (

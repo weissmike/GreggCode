@@ -18,3 +18,23 @@ View your app in AI Studio: https://ai.studio/apps/drive/1XfmEXKy0YwJ2t511Vw9chT
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Android (Capacitor)
+
+1. Install dependencies:
+   `npm install`
+2. Build the web bundle:
+   `npm run build`
+3. Sync Capacitor assets:
+   `npx cap copy`
+4. Open Android Studio:
+   `npx cap open android`
+
+## Folio Images
+
+Place the quick-guide images in `public/folio` using these filenames:
+- `brief-forms-1.jpg`
+- `brief-forms-2.jpg`
+- `brief-forms-3.jpg`
+- `brief-forms-4.jpg`
+- `brief-forms-5.jpg`

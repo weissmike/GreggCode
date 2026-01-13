@@ -61,3 +61,38 @@ export const recognizeShorthand = async (base64Image: string, context?: string):
     throw new Error("COMMUNICATION ENCRYPTION ERROR. RESTART TERMINAL.");
   }
 };
+
+export const analyzeShorthandImage = async (base64Image: string): Promise<string> => {
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+
+  const systemInstruction = `
+    You are a 1940s intelligence officer and an expert in Gregg Shorthand.
+    Provide a concise breakdown of the shorthand image as a multi-line report.
+    Use short lines, each describing a detected stroke or brief form and the likely meaning.
+  `;
+
+  const prompt = `ANALYZE INTERCEPT: Provide a breakdown of the shorthand marks in this image.
+  Return a short report that lists detected primitives and possible words or phrases.`;
+
+  const imagePart = {
+    inlineData: {
+      mimeType: 'image/png',
+      data: base64Image.split(',')[1],
+    },
+  };
+
+  try {
+    const response: GenerateContentResponse = await ai.models.generateContent({
+      model: MODEL_NAME,
+      contents: { parts: [imagePart, { text: prompt }] },
+      config: {
+        systemInstruction,
+      }
+    });
+
+    return response.text || 'No report returned.';
+  } catch (error) {
+    console.error("Gemini Error:", error);
+    throw new Error("COMMUNICATION ENCRYPTION ERROR. RESTART TERMINAL.");
+  }
+};

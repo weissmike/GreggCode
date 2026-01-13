@@ -1,7 +1,8 @@
 
 export enum AppMode {
   LEARN = 'LEARN',
-  TRANSLATE = 'TRANSLATE'
+  TRANSLATE = 'TRANSLATE',
+  FOLIO = 'FOLIO'
 }
 
 export interface TrainingWord {
@@ -21,4 +22,18 @@ export interface RecognitionResult {
   prediction: string;
   confidence: number;
   explanation?: string;
+}
+
+export interface FolioGuide {
+  id: string;
+  title: string;
+  description?: string;
+  type: 'built-in' | 'user';
+  assetUrl?: string;
+  createdAt?: string;
+}
+
+export interface PrimitiveSequence {
+  tokens: string[];
+  source: 'keyboard' | 'latex';
 }
